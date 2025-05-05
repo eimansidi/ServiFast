@@ -1,0 +1,217 @@
+<!-- res/layout/activity_login.xml -->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
+
+    <LinearLayout
+        android:id="@+id/login_container"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingTop="30dp"
+        android:paddingHorizontal="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <ImageView
+            android:id="@+id/avatar"
+            android:src="@drawable/generic_avatar"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="20dp"/>
+
+        <Button
+            android:id="@+id/btnRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="30dp"
+            android:paddingVertical="8dp"
+            android:paddingHorizontal="100dp"
+            android:background="@drawable/bg_button_rounded"
+            android:backgroundTint="@color/colorSecondary"
+            android:color="@color/colorSecondary"
+            android:text="@string/registrarse"
+            android:textSize="15sp"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/colorOnPrimary" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_rounded_white_signin"
+            android:elevation="4dp"
+            android:orientation="vertical"
+            android:paddingTop="15dp"
+            android:paddingHorizontal="25dp">
+
+            <View
+                android:layout_width="40dp"
+                android:layout_height="4dp"
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="center"
+                android:background="@color/colorSecondary"/>
+
+            <TextView
+                android:id="@+id/labelNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/nombre"
+                android:textFontWeight="400"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/inputNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:alpha="0.3"
+                android:background="@drawable/bg_input_rounded"
+                android:inputType="textEmailAddress"
+                android:padding="10dp"
+                android:textSize="15sp"
+                android:layout_marginBottom="20dp"/>
+
+            <TextView
+                android:id="@+id/labelApellidos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/apellidos"
+                android:textFontWeight="400"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/inputApellidos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:alpha="0.3"
+                android:background="@drawable/bg_input_rounded"
+                android:inputType="textEmailAddress"
+                android:padding="10dp"
+                android:textSize="15sp"
+                android:layout_marginBottom="20dp"/>
+
+            <TextView
+                android:id="@+id/labelEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/email"
+                android:textFontWeight="400"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/inputEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:alpha="0.3"
+                android:background="@drawable/bg_input_rounded"
+                android:hint="@string/email_ph"
+                android:inputType="textEmailAddress"
+                android:padding="10dp"
+                android:textSize="15sp"
+                android:layout_marginBottom="20dp"/>
+
+            <TextView
+                android:id="@+id/labelContrasena"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/contrasena"
+                android:textFontWeight="400"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/inputContrasena"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:alpha="0.3"
+                android:background="@drawable/bg_input_rounded"
+                android:hint="@string/contrasena_ph"
+                android:inputType="textEmailAddress"
+                android:padding="10dp"
+                android:textSize="15sp"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:id="@+id/labelRequisitos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/req_contrasena"
+                android:textSize="15sp"
+                android:textFontWeight="600"
+                />
+
+            <TextView
+                android:id="@+id/listRequisitos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/req_contrasena_list"
+                android:layout_margin="10dp"
+                android:textSize="15sp"
+                android:textAlignment="center"
+                android:alpha="0.3"
+                />
+
+            <TextView
+                android:id="@+id/labelTelefono"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/telefono"
+                android:textFontWeight="400"
+                android:textSize="15sp"
+                android:layout_marginTop="10dp"/>
+
+            <EditText
+                android:id="@+id/inputTelefono"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:alpha="0.3"
+                android:background="@drawable/bg_input_rounded"
+                android:hint="@string/telefono_ph"
+                android:inputType="textEmailAddress"
+                android:padding="10dp"
+                android:textSize="15sp"
+                android:layout_marginBottom="10dp"/>
+
+            <RadioGroup
+                android:id="@+id/tipoUsuarioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="20dp">
+
+                <RadioButton
+                    android:id="@+id/rbParticular"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/particular"
+                    android:textSize="15sp"
+                    android:buttonTint="@color/colorOnSecondary"/>
+
+                <RadioButton
+                    android:id="@+id/rbProfesional"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/profesional"
+                    android:textSize="15sp"
+                    android:buttonTint="@color/colorOnSecondary"/>
+            </RadioGroup>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,117 @@
+<!-- res/layout/item_publicacion.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="420dp"
+    android:orientation="vertical"
+    android:background="@drawable/bg_rounded_white"
+    android:layout_margin="12dp"
+    android:padding="16dp">
+
+    <!-- Etiqueta tipo usuario -->
+    <TextView
+        android:id="@+id/tvTipoUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/particular"
+        android:textSize="12sp"
+        android:textColor="@color/colorParticular"
+        android:textStyle="bold" />
+
+    <!-- Imagen -->
+    <ImageView
+        android:id="@+id/imgServicio"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="8dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/img_placeholder"
+        android:background="@color/colorSeondaryVariant"
+        android:alpha="0.9" />
+
+    <!-- Título -->
+    <TextView
+        android:id="@+id/tvTitulo"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="@string/titulo"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_marginTop="8dp" />
+
+    <!-- Descripción con altura fija -->
+    <TextView
+        android:id="@+id/tvDescripcion"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:text="@string/descripcion"
+        android:textSize="14sp"
+        android:alpha="0.6"
+        android:layout_marginTop="4dp" />
+
+    <!-- Avatar + nombre y rating -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="6dp">
+
+        <ImageView
+            android:id="@+id/avatarUsuario"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/generic_avatar"
+            android:scaleType="centerCrop"
+            android:backgroundTint="@color/colorSeondaryVariant" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tvNombreUsuario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nombre"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/iconRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:src="@drawable/ic_rating" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Precio y Like -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="6dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tvPrecio"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="45 €"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorSecondary" />
+
+        <ImageButton
+            android:id="@+id/btnLike"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_like"
+            android:background="@android:color/transparent" />
+    </LinearLayout>
+</LinearLayout>

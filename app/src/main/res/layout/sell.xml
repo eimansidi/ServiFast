@@ -1,0 +1,175 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorSurface">
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btnContinuar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="25dp">
+
+                <ImageButton
+                    android:id="@+id/btnCerrar"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="start"
+                    android:src="@drawable/ic_close" />
+
+                <ImageView
+                    android:id="@+id/imagenSeleccionada"
+                    android:layout_width="140dp"
+                    android:layout_height="140dp"
+                    android:layout_marginTop="12dp"
+                    android:scaleType="centerCrop"
+                    android:layout_gravity="center"
+                    android:alpha="0.3"
+                    android:background="@color/colorSeondaryVariant"
+                    android:src="@drawable/img_placeholder" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/separador1"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/colorSeondaryVariant" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingVertical="16dp"
+                android:paddingHorizontal="30dp">
+
+                <EditText
+                    android:id="@+id/inputTitulo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/titulo"
+                    android:alpha="0.3"
+                    android:textSize="15sp"
+                    android:background="@drawable/bg_input_rounded"
+                    android:padding="10dp"
+                    android:layout_marginTop="12dp" />
+
+                <EditText
+                    android:id="@+id/inputDescripcion"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:hint="@string/descripcion"
+                    android:textSize="15sp"
+                    android:alpha="0.3"
+                    android:gravity="top"
+                    android:background="@drawable/bg_input_rounded"
+                    android:padding="10dp"
+                    android:inputType="textMultiLine"
+                    android:layout_marginTop="25dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="25dp"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:id="@+id/iconUbicacion"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_location" />
+
+                    <EditText
+                        android:id="@+id/inputUbicacion"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_weight="1"
+                        android:hint="@string/ubicacion"
+                        android:textSize="15sp"
+                        android:alpha="0.3"
+                        android:background="@drawable/bg_input_rounded"
+                        android:padding="10dp" />
+                </LinearLayout>
+
+                <Spinner
+                    android:id="@+id/spinnerCategoria"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:background="@drawable/bg_input_rounded"
+                    android:padding="20dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="25dp">
+
+                    <EditText
+                        android:id="@+id/inputPrecio"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="@string/precio"
+                        android:inputType="numberDecimal"
+                        android:background="@drawable/bg_input_rounded"
+                        android:alpha="0.3"
+                        android:padding="20dp"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/labelEuro"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="€"
+                        android:textSize="50sp"
+                        android:textStyle="bold"
+                        android:layout_marginStart="16dp" />
+                </LinearLayout>
+
+                <CheckBox
+                android:id="@+id/checkboxNegociable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/precio_negociable"
+                android:textSize="12sp"
+                android:layout_marginTop="10dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btnContinuar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="25dp"
+        android:text="@string/continuar"
+        android:textSize="15sp"
+        android:textColor="@color/colorSecondary"
+        android:textAlignment="center"
+        android:paddingHorizontal="100dp"
+        android:paddingVertical="5dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:background="@drawable/bg_button_rounded"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
