@@ -41,8 +41,9 @@
     <string name="favoritos">Favoritos</string>
     <string name="mis_servicios">Mis servicios</string>
     <string name="configuracion">Configuración</string>
+    <string name="comprados">Comprados</string>
     <string name="cerrar_sesion">Cerrar sesión</string>
-    <string name="valoraciones">Valoración</string>
+    <string name="valoraciones">Valoraciones</string>
     <string name="datos_personales">Datos personales</string>
     <string name="idioma">Idioma</string>
     <string name="espanol">Español</string>

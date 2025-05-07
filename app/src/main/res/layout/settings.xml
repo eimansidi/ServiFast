@@ -2,11 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorSurface">
 
-    <!-- Botón back + título -->
     <LinearLayout
         android:id="@+id/topBar"
         android:layout_width="0dp"
@@ -22,27 +22,23 @@
             android:id="@+id/btnBack"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_back" />
+            android:src="@drawable/ic_back"/>
 
         <TextView
-            android:id="@+id/tvTitulo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:text="@string/configuracion"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
     </LinearLayout>
 
-    <!-- Scroll con contenido -->
     <ScrollView
-        android:id="@+id/scrollView"
+        android:id="@+id/viewSettings"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:fillViewport="true"
         app:layout_constraintTop_toBottomOf="@id/topBar"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btnContinue"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
@@ -51,7 +47,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Sección Idioma -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -59,209 +54,193 @@
                 android:paddingVertical="16dp">
 
                 <TextView
-                    android:id="@+id/labelIdioma"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/idioma"
                     android:textStyle="bold"
                     android:textSize="18sp"
                     android:paddingHorizontal="30dp"
-                    android:layout_marginBottom="10dp" />
+                    android:layout_marginBottom="10dp"/>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@color/colorSeondaryVariant"
-                    android:layout_marginHorizontal="-30dp"
                     android:layout_marginBottom="20dp"/>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <Button
+                    android:id="@+id/btnChangeLanguage"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center">
-
-                    <Button
-                        android:id="@+id/btnCambiarIdioma"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/espanol"
-                        android:background="@drawable/bg_input_rounded"
-                        android:textAlignment="center"
-                        android:gravity="center"
-                        android:textSize="16sp"
-                        android:paddingVertical="20dp"
-                        android:paddingHorizontal="100dp"/>
-                </LinearLayout>
+                    android:text="@string/espanol"
+                    android:background="@drawable/bg_input_rounded"
+                    android:textAlignment="center"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="16sp"
+                    android:paddingVertical="20dp"
+                    android:paddingHorizontal="100dp"/>
             </LinearLayout>
-            <!-- Sección Datos Personales -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="20dp">
 
                 <TextView
-                    android:id="@+id/labelDatos"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/datos_personales"
                     android:textStyle="bold"
                     android:textSize="18sp"
                     android:paddingHorizontal="30dp"
-                    android:layout_marginBottom="10dp" />
+                    android:layout_marginBottom="10dp"/>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@color/colorSeondaryVariant"
-                    android:layout_marginHorizontal="-30dp"
                     android:layout_marginBottom="20dp"/>
 
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingHorizontal="30dp">
-
-                <TextView
-                    android:id="@+id/labelNombre"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/nombre"
-                    android:textFontWeight="400"
-                    android:textSize="15sp" />
+                    android:paddingHorizontal="30dp"
+                    android:orientation="vertical">
 
-                <EditText
-                    android:id="@+id/inputNombre"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:alpha="0.3"
-                    android:background="@drawable/bg_input_rounded"
-                    android:inputType="text"
-                    android:padding="10dp"
-                    android:textSize="15sp"
-                    android:layout_marginBottom="20dp"/>
-
-                <TextView
-                    android:id="@+id/labelApellidos"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/apellidos"
-                    android:textFontWeight="400"
-                    android:textSize="15sp" />
-
-                <EditText
-                    android:id="@+id/inputApellidos"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:alpha="0.3"
-                    android:background="@drawable/bg_input_rounded"
-                    android:inputType="text"
-                    android:padding="10dp"
-                    android:textSize="15sp"
-                    android:layout_marginBottom="20dp"/>
-
-                <TextView
-                    android:id="@+id/labelEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/email"
-                    android:textFontWeight="400"
-                    android:textSize="15sp" />
-
-                <EditText
-                    android:id="@+id/inputEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:alpha="0.3"
-                    android:background="@drawable/bg_input_rounded"
-                    android:hint="@string/email_ph"
-                    android:inputType="textEmailAddress"
-                    android:padding="10dp"
-                    android:textSize="15sp"
-                    android:layout_marginBottom="20dp"/>
-
-                <TextView
-                    android:id="@+id/labelContrasena"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/contrasena"
-                    android:textFontWeight="400"
-                    android:textSize="15sp" />
-
-                <EditText
-                    android:id="@+id/inputContrasena"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:alpha="0.3"
-                    android:background="@drawable/bg_input_rounded"
-                    android:hint="@string/contrasena_ph"
-                    android:inputType="textPassword"
-                    android:padding="10dp"
-                    android:textSize="15sp"
-                    android:layout_marginBottom="10dp"/>
-
-                <TextView
-                    android:id="@+id/labelTelefono"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/telefono"
-                    android:textFontWeight="400"
-                    android:textSize="15sp"
-                    android:layout_marginTop="10dp"/>
-
-                <EditText
-                    android:id="@+id/inputTelefono"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:alpha="0.3"
-                    android:background="@drawable/bg_input_rounded"
-                    android:hint="@string/telefono_ph"
-                    android:inputType="phone"
-                    android:padding="10dp"
-                    android:textSize="15sp"
-                    android:layout_marginBottom="10dp"/>
-
-                <RadioGroup
-                    android:id="@+id/tipoUsuarioGroup"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="20dp">
-
-                    <RadioButton
-                        android:id="@+id/rbParticular"
-                        android:layout_width="0dp"
+                    <TextView
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/particular"
-                        android:textSize="15sp"
-                        android:buttonTint="@color/colorOnSecondary"/>
+                        android:text="@string/nombre"
+                        android:textSize="15sp"/>
 
-                    <RadioButton
-                        android:id="@+id/rbProfesional"
-                        android:layout_width="0dp"
+                    <EditText
+                        android:id="@+id/inputName"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/profesional"
+                        android:layout_marginTop="10dp"
+                        android:alpha="0.4"
+                        android:background="@drawable/bg_input_rounded"
+                        android:inputType="textPersonName"
+                        android:padding="10dp"
                         android:textSize="15sp"
-                        android:buttonTint="@color/colorOnSecondary"/>
-                </RadioGroup>
+                        android:layout_marginBottom="20dp"
+                        android:maxLines="1"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/apellidos"
+                        android:textSize="15sp"/>
+
+                    <EditText
+                        android:id="@+id/inputLastname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:alpha="0.4"
+                        android:background="@drawable/bg_input_rounded"
+                        android:inputType="textPersonName"
+                        android:padding="10dp"
+                        android:textSize="15sp"
+                        android:layout_marginBottom="20dp"
+                        android:maxLines="1"/>
+
+                    <TextView
+                        android:id="@+id/labelEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/email"
+                        android:textSize="15sp"/>
+
+                    <EditText
+                        android:id="@+id/inputEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:alpha="0.4"
+                        android:background="@drawable/bg_input_rounded"
+                        android:hint="@string/email_ph"
+                        android:inputType="textEmailAddress"
+                        android:padding="10dp"
+                        android:textSize="15sp"
+                        android:layout_marginBottom="20dp"
+                        android:maxLines="1"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/contrasena"
+                        android:textSize="15sp"/>
+
+                    <EditText
+                        android:id="@+id/inputPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:alpha="0.4"
+                        android:background="@drawable/bg_input_rounded"
+                        android:hint="@string/contrasena_ph"
+                        android:inputType="textPassword"
+                        android:padding="10dp"
+                        android:textSize="15sp"
+                        android:layout_marginBottom="10dp"
+                        android:maxLines="1"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/telefono"
+                        android:textSize="15sp"
+                        android:layout_marginTop="10dp"/>
+
+                    <EditText
+                        android:id="@+id/inputPhone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:alpha="0.4"
+                        android:background="@drawable/bg_input_rounded"
+                        android:hint="@string/telefono_ph"
+                        android:inputType="phone"
+                        android:padding="10dp"
+                        android:textSize="15sp"
+                        android:layout_marginBottom="10dp"
+                        android:maxLines="1"/>
+
+                    <RadioGroup
+                        android:id="@+id/userTypeGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="20dp">
+
+                        <RadioButton
+                            android:id="@+id/rbParticular"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/particular"
+                            android:textSize="15sp"
+                            android:buttonTint="@color/colorOnSecondary"/>
+
+                        <RadioButton
+                            android:id="@+id/rbProfessional"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/profesional"
+                            android:textSize="15sp"
+                            android:buttonTint="@color/colorOnSecondary"/>
+                    </RadioGroup>
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-
     </ScrollView>
+
     <Button
-        android:id="@+id/btnContinuar"
+        android:id="@+id/btnContinue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="25dp"
@@ -275,5 +254,5 @@
         android:background="@drawable/bg_button_rounded"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

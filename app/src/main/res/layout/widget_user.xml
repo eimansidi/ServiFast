@@ -1,4 +1,4 @@
-<!-- res/layout/item_usuario_rating.xml -->
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -6,38 +6,33 @@
     android:gravity="center_vertical"
     android:padding="12dp"
     android:layout_margin="8dp"
-    android:background="@drawable/bg_button_rounded">
+    android:background="@drawable/bg_rounded_white2">
 
-    <!-- Avatar -->
     <ImageView
-        android:id="@+id/avatarUsuario"
+        android:id="@+id/userAvatar"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginEnd="12dp"
-        android:src="@drawable/generic_avatar"
-        android:scaleType="centerCrop"
-        android:backgroundTint="@color/colorSeondaryVariant"
-        android:background="@drawable/bg_rounded_white" />
+        android:src="@drawable/generic_avatar"/>
 
-    <!-- Nombre y rating -->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tvNombreUsuario"
+            android:id="@+id/tvUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/nombre"
+            android:text="@string/usuario"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
         <ImageView
             android:id="@+id/iconRating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:src="@drawable/ic_rating" />
+            android:src="@drawable/ic_rating"/>
     </LinearLayout>
 </LinearLayout>

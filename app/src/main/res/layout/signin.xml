@@ -1,4 +1,4 @@
-<!-- res/layout/activity_login.xml -->
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -17,11 +17,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/avatar"
+            android:id="@+id/userAvatar"
             android:src="@drawable/generic_avatar"
             android:layout_width="150dp"
             android:layout_height="150dp"
@@ -31,16 +30,14 @@
             android:id="@+id/btnRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="30dp"
+            android:layout_marginVertical="20dp"
             android:paddingVertical="8dp"
             android:paddingHorizontal="100dp"
             android:background="@drawable/bg_button_rounded"
             android:backgroundTint="@color/colorSecondary"
-            android:color="@color/colorSecondary"
             android:text="@string/registrarse"
             android:textSize="15sp"
-            android:layout_gravity="center_horizontal"
-            android:textColor="@color/colorOnPrimary" />
+            android:textColor="@color/colorOnPrimary"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -59,131 +56,120 @@
                 android:background="@color/colorSecondary"/>
 
             <TextView
-                android:id="@+id/labelNombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/nombre"
-                android:textFontWeight="400"
-                android:textSize="15sp" />
+                android:textSize="15sp"/>
 
             <EditText
-                android:id="@+id/inputNombre"
+                android:id="@+id/inputName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:alpha="0.3"
+                android:alpha="0.4"
                 android:background="@drawable/bg_input_rounded"
-                android:inputType="textEmailAddress"
+                android:inputType="textPersonName"
                 android:padding="10dp"
                 android:textSize="15sp"
-                android:layout_marginBottom="20dp"/>
+                android:layout_marginBottom="20dp"
+                android:maxLines="1"/>
 
             <TextView
-                android:id="@+id/labelApellidos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/apellidos"
-                android:textFontWeight="400"
-                android:textSize="15sp" />
+                android:textSize="15sp"/>
 
             <EditText
-                android:id="@+id/inputApellidos"
+                android:id="@+id/inputLastname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:alpha="0.3"
+                android:alpha="0.4"
                 android:background="@drawable/bg_input_rounded"
-                android:inputType="textEmailAddress"
+                android:inputType="textPersonName"
                 android:padding="10dp"
                 android:textSize="15sp"
-                android:layout_marginBottom="20dp"/>
+                android:layout_marginBottom="20dp"
+                android:maxLines="1"/>
 
             <TextView
-                android:id="@+id/labelEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/email"
-                android:textFontWeight="400"
-                android:textSize="15sp" />
+                android:textSize="15sp"/>
 
             <EditText
                 android:id="@+id/inputEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:alpha="0.3"
+                android:alpha="0.4"
                 android:background="@drawable/bg_input_rounded"
                 android:hint="@string/email_ph"
                 android:inputType="textEmailAddress"
                 android:padding="10dp"
                 android:textSize="15sp"
-                android:layout_marginBottom="20dp"/>
+                android:layout_marginBottom="20dp"
+                android:maxLines="1"/>
 
             <TextView
-                android:id="@+id/labelContrasena"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/contrasena"
-                android:textFontWeight="400"
-                android:textSize="15sp" />
+                android:textSize="15sp"/>
 
             <EditText
-                android:id="@+id/inputContrasena"
+                android:id="@+id/inputPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:alpha="0.3"
+                android:alpha="0.4"
                 android:background="@drawable/bg_input_rounded"
                 android:hint="@string/contrasena_ph"
-                android:inputType="textEmailAddress"
+                android:inputType="textPassword"
                 android:padding="10dp"
                 android:textSize="15sp"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="10dp"
+                android:maxLines="1"/>
 
             <TextView
-                android:id="@+id/labelRequisitos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/req_contrasena"
-                android:textSize="15sp"
-                android:textFontWeight="600"
-                />
+                android:textSize="15sp"/>
 
             <TextView
-                android:id="@+id/listRequisitos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/req_contrasena_list"
-                android:layout_margin="10dp"
+                android:layout_marginTop="10dp"
                 android:textSize="15sp"
                 android:textAlignment="center"
-                android:alpha="0.3"
-                />
+                android:alpha="0.5"/>
 
             <TextView
-                android:id="@+id/labelTelefono"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/telefono"
-                android:textFontWeight="400"
                 android:textSize="15sp"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="20dp"/>
 
             <EditText
-                android:id="@+id/inputTelefono"
+                android:id="@+id/inputPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:alpha="0.3"
+                android:alpha="0.4"
                 android:background="@drawable/bg_input_rounded"
                 android:hint="@string/telefono_ph"
-                android:inputType="textEmailAddress"
+                android:inputType="phone"
                 android:padding="10dp"
                 android:textSize="15sp"
                 android:layout_marginBottom="10dp"/>
 
             <RadioGroup
-                android:id="@+id/tipoUsuarioGroup"
+                android:id="@+id/userTypeGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -201,7 +187,7 @@
                     android:buttonTint="@color/colorOnSecondary"/>
 
                 <RadioButton
-                    android:id="@+id/rbProfesional"
+                    android:id="@+id/rbProfessional"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -209,9 +195,6 @@
                     android:textSize="15sp"
                     android:buttonTint="@color/colorOnSecondary"/>
             </RadioGroup>
-
-
         </LinearLayout>
-
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

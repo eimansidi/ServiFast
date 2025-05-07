@@ -6,186 +6,218 @@
     android:layout_height="match_parent"
     android:background="@color/colorSurface">
 
-    <!-- Top bar con botón volver y llamar -->
-    <ImageButton
-        android:id="@+id/btnBack"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_margin="16dp"
-        android:background="@android:color/transparent"
-        android:src="@drawable/ic_back"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageButton
-        android:id="@+id/btnCall"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_margin="16dp"
-        android:backgroundTint="@color/colorPrimary"
-        android:background="@drawable/bg_button_rounded"
-        android:src="@drawable/ic_call"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <!-- Imagen principal -->
-    <ImageView
-        android:id="@+id/imgServicio"
-        android:layout_width="0dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="60dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/img_placeholder"
-        app:layout_constraintTop_toBottomOf="@id/btnBack"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <!-- Separador -->
-    <View
-        android:id="@+id/separador"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/colorSeondaryVariant"
-        app:layout_constraintTop_toBottomOf="@id/imgServicio"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <!-- Info de tipo y categoría + like -->
     <LinearLayout
-        android:id="@+id/tipoCategoriaLayout"
+        android:id="@+id/layoutTop"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="8dp"
-        android:gravity="center_vertical"
-        app:layout_constraintTop_toBottomOf="@id/separador"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <TextView
-            android:id="@+id/tvTipoUsuario"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Particular"
-            android:textStyle="bold"
-            android:textColor="@color/colorParticular"
-            android:layout_marginEnd="4dp" />
-
-        <TextView
-            android:id="@+id/tvCategoria"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="> Categoría"
-            android:textSize="14sp"
-            android:textColor="@color/colorSecondary"
-            android:layout_marginEnd="8dp" />
-
-        <View android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="1" />
-
         <ImageButton
-            android:id="@+id/btnLike"
+            android:id="@+id/btnBack"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_like" />
-    </LinearLayout>
-
-    <!-- Título -->
-    <TextView
-        android:id="@+id/tvTitulo"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Título del servicio"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@id/tipoCategoriaLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginHorizontal="16dp" />
-
-    <!-- Descripción -->
-    <TextView
-        android:id="@+id/tvDescripcion"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Descripción del servicio..."
-        android:textSize="15sp"
-        android:alpha="0.8"
-        app:layout_constraintTop_toBottomOf="@id/tvTitulo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginHorizontal="16dp" />
-
-    <!-- Ubicación -->
-    <LinearLayout
-        android:id="@+id/layoutUbicacion"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="8dp"
-        android:gravity="center_vertical"
-        app:layout_constraintTop_toBottomOf="@id/tvDescripcion"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginHorizontal="16dp">
+            android:src="@drawable/ic_back"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"/>
 
         <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/ic_location" />
+            android:id="@+id/imgPlaceholder"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="12dp"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            android:layout_marginBottom="25dp"
+            android:alpha="0.3"
+            android:background="@color/colorSeondaryVariant"
+            android:src="@drawable/img_placeholder"/>
 
-        <TextView
-            android:id="@+id/tvUbicacion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
-            android:text="Ubicación"
-            android:textSize="14sp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/colorSeondaryVariant"/>
     </LinearLayout>
 
-    <!-- Usuario + Precio -->
-    <LinearLayout
+    <ScrollView
+        android:id="@+id/viewBuy"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="12dp"
-        app:layout_constraintTop_toBottomOf="@id/layoutUbicacion"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/layoutTop"
+        app:layout_constraintBottom_toTopOf="@id/btnBuy"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginHorizontal="16dp"
-        android:gravity="center_vertical">
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <include layout="@layout/item_usuario_rating"
-            android:layout_width="0dp"
+    <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:orientation="vertical"
+            android:paddingHorizontal="30dp">
 
-        <TextView
-            android:id="@+id/tvPrecio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="45 €"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/colorSecondary"
-            android:layout_marginStart="12dp" />
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp"
+                android:gravity="center_vertical"
+                android:alpha="0.5">
 
-    <!-- Botón comprar -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/tvUserType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/particular"
+                        android:textStyle="bold"
+                        android:textSize="13sp"
+                        android:layout_marginEnd="8dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=">"
+                        android:textSize="13sp"
+                        android:layout_marginEnd="8dp"/>
+
+                    <TextView
+                        android:id="@+id/tvCategory"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/categorias"
+                        android:textSize="13sp"/>
+                </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/btnLike"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_like"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/titulo"
+                android:textStyle="bold"
+                android:textSize="25sp"/>
+
+            <TextView
+                android:id="@+id/tvDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/descripcion"
+                android:textSize="15sp"
+                android:alpha="0.7"/>
+
+            <LinearLayout
+                android:id="@+id/layoutLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="25dp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_location"/>
+
+                <TextView
+                    android:id="@+id/tvLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="@string/ubicacion"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="25dp"
+                android:gravity="center_vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:padding="12dp"
+                    android:background="@drawable/bg_button_rounded">
+
+                    <ImageView
+                        android:id="@+id/userAvatar"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_marginEnd="12dp"
+                        android:src="@drawable/generic_avatar"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvUsername"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/usuario"
+                            android:textSize="16sp"
+                            android:textStyle="bold"/>
+
+                        <ImageView
+                            android:id="@+id/userRating"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:src="@drawable/ic_rating"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/tvPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="45€"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorSecondary"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
     <Button
-        android:id="@+id/btnComprar"
-        android:layout_width="0dp"
+        android:id="@+id/btnBuy"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:text="Comprar"
-        android:textSize="16sp"
+        android:layout_margin="25dp"
+        android:text="@string/comprar"
+        android:textSize="15sp"
+        android:textColor="@color/colorSecondary"
+        android:textAlignment="center"
+        android:paddingHorizontal="100dp"
+        android:paddingVertical="5dp"
         android:backgroundTint="@color/colorPrimary"
-        android:textColor="@color/colorOnPrimary"
         android:background="@drawable/bg_button_rounded"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

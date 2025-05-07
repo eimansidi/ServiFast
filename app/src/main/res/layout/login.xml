@@ -1,94 +1,82 @@
-<!-- res/layout/activity_login.xml -->
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary">
 
     <LinearLayout
         android:id="@+id/login_container"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:padding="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        android:padding="30dp">
 
         <ImageView
-            android:id="@+id/logoImageView"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20dp"
+            android:src="@drawable/img_placeholder"/>
 
         <TextView
-            android:id="@+id/sloganTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="16dp"
             android:text="@string/app_slogan"
             android:textAlignment="center"
-            android:textColor="@color/colorOnSecondary"
-            android:textFontWeight="600"
+            android:textStyle="bold"
             android:layout_margin="30dp"
-            android:textSize="24sp" />
+            android:textSize="24sp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
             android:background="@drawable/bg_rounded_white"
-            android:elevation="4dp"
             android:orientation="vertical"
             android:padding="25dp">
 
             <TextView
-                android:id="@+id/labelUsuario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/usuario"
-                android:textFontWeight="400"
-                android:textSize="15sp" />
+                android:textSize="15sp"/>
 
             <EditText
-                android:id="@+id/inputUsuario"
+                android:id="@+id/inputUser"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
-                android:alpha="0.3"
+                android:alpha="0.4"
                 android:background="@drawable/bg_input_rounded"
                 android:hint="@string/usuario_ph"
-                android:inputType="textEmailAddress"
+                android:inputType="textEmailAddress|phone"
                 android:padding="10dp"
                 android:textSize="15sp"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="26dp"
+                android:maxLines="1"/>
 
             <TextView
-                android:id="@+id/labelContrasena"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:text="@string/contrasena"
-                android:textFontWeight="400"
-                android:textSize="15sp" />
+                android:textSize="15sp"/>
 
             <EditText
-                android:id="@+id/inputContrasena"
+                android:id="@+id/inputPassword"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="70dp"
-                android:alpha="0.3"
+                android:alpha="0.4"
                 android:background="@drawable/bg_input_rounded"
                 android:hint="@string/contrasena_ph"
                 android:inputType="textPassword"
                 android:padding="10dp"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:maxLines="1"/>
 
             <Button
                 android:id="@+id/btnLogin"
@@ -99,11 +87,10 @@
                 android:paddingHorizontal="30dp"
                 android:background="@drawable/bg_button_rounded"
                 android:backgroundTint="@color/colorSecondary"
-                android:color="@color/colorSecondary"
                 android:text="@string/iniciar_sesion"
                 android:textSize="15sp"
                 android:layout_gravity="center_horizontal"
-                android:textColor="@color/colorOnPrimary" />
+                android:textColor="@color/colorOnPrimary"/>
 
             <TextView
                 android:id="@+id/tvForgotPassword"
@@ -112,10 +99,8 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="8dp"
                 android:text="@string/contrasena_olvidada"
-                android:textFontWeight="600"
                 android:textColor="@color/colorOnSecondary"
                 android:textSize="15sp"/>
-
         </LinearLayout>
 
         <Button
@@ -130,7 +115,6 @@
             android:text="@string/registrarse"
             android:textSize="15sp"
             android:layout_gravity="center_horizontal"
-            android:textColor="@color/colorOnPrimary" />
-
+            android:textColor="@color/colorOnPrimary"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
