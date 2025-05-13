@@ -1,4 +1,4 @@
-package com.eiman.servifast.db
+package com.eiman.servifast.models
 
 import java.math.BigDecimal
 import java.time.LocalDateTime

@@ -3,7 +3,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@drawable/bg_rounded_white2"
+    android:background="@drawable/bg_post"
     android:layout_margin="12dp"
     android:padding="16dp">
 
@@ -14,7 +14,7 @@
         android:layout_marginTop="8dp"
         android:scaleType="centerCrop"
         android:src="@drawable/img_placeholder"
-        android:background="@color/colorSeondaryVariant"
+        android:background="@color/colorSecondaryVariant"
         android:alpha="0.7"/>
 
     <TextView

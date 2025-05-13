@@ -34,13 +34,13 @@
             android:scaleType="centerCrop"
             android:layout_marginBottom="25dp"
             android:alpha="0.3"
-            android:background="@color/colorSeondaryVariant"
+            android:background="@color/colorSecondaryVariant"
             android:src="@drawable/img_placeholder"/>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:background="@color/colorSeondaryVariant"/>
+            android:background="@color/colorSecondaryVariant"/>
     </LinearLayout>
 
     <ScrollView
@@ -156,7 +156,7 @@
                     android:orientation="horizontal"
                     android:gravity="center_vertical"
                     android:padding="12dp"
-                    android:background="@drawable/bg_button_rounded">
+                    android:background="@drawable/bg_user">
 
                     <ImageView
                         android:id="@+id/userAvatar"
@@ -183,7 +183,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
-                            android:src="@drawable/ic_rating"/>
+                            android:src="@drawable/ic_star"/>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -206,17 +206,15 @@
 
     <Button
         android:id="@+id/btnBuy"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_margin="25dp"
         android:text="@string/comprar"
         android:textSize="15sp"
         android:textColor="@color/colorSecondary"
         android:textAlignment="center"
-        android:paddingHorizontal="100dp"
         android:paddingVertical="5dp"
-        android:backgroundTint="@color/colorPrimary"
-        android:background="@drawable/bg_button_rounded"
+        android:background="@drawable/bg_button_primary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>

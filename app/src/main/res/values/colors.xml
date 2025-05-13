@@ -3,8 +3,9 @@
     <color name="colorPrimary">#78F2CB</color>
     <color name="colorPrimaryVariant">#65E3B7</color>
     <color name="colorSecondary">#2C2C2C</color>
-    <color name="colorSeondaryVariant">#757575</color>
+    <color name="colorSecondaryVariant">#757575</color>
     <color name="colorTertiary">#827C7C</color>
+    <color name="colorContainer">#DEDEDE</color>
 
     <color name="colorBackground">#FFFFFF</color>
     <color name="colorSurface">#FFFFFF</color>
@@ -15,4 +16,7 @@
     <color name="colorParticular">#007AFF</color>
     <color name="colorProfesional">#FF3B30</color>
     <color name="colorOnError">#FFFFFF</color>
+
+    <color name="star_active">#FFD700</color>
+    <color name="star_inactive">#E0E0E0</color>
 </resources>

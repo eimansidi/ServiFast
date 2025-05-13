@@ -2,7 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
+        android:networkSecurityConfig="@xml/network_security_config"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -12,15 +15,26 @@
         android:supportsRtl="true"
         android:theme="@style/Base.Theme.ServiFast"
         tools:targetApi="31">
-        <activity
-            android:name=".MainActivity"
+        <activity android:name=".activities.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activities.LoginActivity"/>
+        <activity android:name=".activities.SigninActivity"/>
+        <activity android:name=".activities.ForgottenPasswordActivity"/>
+        <activity android:name=".activities.HomeActivity"/>
+        <activity android:name=".activities.SettingsActivity"/>
+        <activity android:name=".activities.ChangePasswordActivity"/>
+        <activity android:name=".activities.MenuActivity"/>
+        <activity android:name=".activities.ProfileActivity"/>
+        <activity android:name=".activities.MyServicesActivity"/>
+        <activity android:name=".activities.SellActivity"/>
+        <activity android:name=".activities.BuyActivity"/>
+        <activity android:name=".activities.BoughtActivity"/>
+        <activity android:name=".activities.FavoritesActivity"/>
     </application>
 
 </manifest>

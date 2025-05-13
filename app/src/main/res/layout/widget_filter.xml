@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_popup"
+    android:layout_margin="12dp"
+    android:padding="16dp">
+
+    <ImageButton
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_gravity="end"
+        android:src="@drawable/ic_close"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <EditText
+            android:id="@+id/inputMinPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/precio_min"
+            android:inputType="numberDecimal"
+            android:background="@drawable/bg_input"
+            android:alpha="0.4"
+            android:padding="10dp"
+            android:layout_marginEnd="20dp"
+            android:textSize="13sp"
+            android:maxLines="1"/>
+
+        <EditText
+            android:id="@+id/InputMaxPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/precio_max"
+            android:inputType="numberDecimal"
+            android:background="@drawable/bg_input"
+            android:alpha="0.4"
+            android:padding="10dp"
+            android:textSize="13sp"
+            android:maxLines="1"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_location"/>
+
+        <EditText
+            android:id="@+id/filterInputLocation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:alpha="0.4"
+            android:background="@drawable/bg_input"
+            android:hint="@string/ubicacion"
+            android:inputType="textPostalAddress"
+            android:maxLines="1"
+            android:padding="10dp"
+            android:textSize="13sp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <Button
+            android:id="@+id/filterParticular"
+            android:layout_width="0dp"
+            android:layout_height="17dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_button_tertiary"
+            android:textColor="@color/colorOnPrimary"
+            android:text="@string/particular"
+            android:layout_marginEnd="20dp"
+            android:textSize="12sp"/>
+
+        <Button
+            android:id="@+id/filterProfesional"
+            android:layout_width="0dp"
+            android:layout_height="17dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_button_tertiary"
+            android:textColor="@color/colorOnPrimary"
+            android:text="@string/profesional"
+            android:textSize="12sp"/>
+    </LinearLayout>
+
+    <Spinner
+        android:id="@+id/filterSpinnerCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_input_sell"
+        android:padding="10dp"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/continuar"
+        android:background="@drawable/bg_button_primary"
+        android:layout_marginTop="25dp"/>
+</LinearLayout>

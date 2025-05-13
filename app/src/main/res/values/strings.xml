@@ -5,6 +5,9 @@
     <string name="usuario_ph">Teléfono o email</string>
     <string name="contrasena">Contraseña</string>
     <string name="contrasena_ph">******</string>
+    <string name="nueva_contraseña">Nueva contraseña</string>
+    <string name="repite_nueva_contraseña">Repite la nueva contraseña</string>
+    <string name="guardar">Guardar</string>
     <string name="nombre">Nombre</string>
     <string name="apellidos">Apellidos</string>
     <string name="email">Email</string>
@@ -45,7 +48,11 @@
     <string name="cerrar_sesion">Cerrar sesión</string>
     <string name="valoraciones">Valoraciones</string>
     <string name="datos_personales">Datos personales</string>
+    <string name="cambiar_contraseña">Cambiar contraseña</string>
     <string name="idioma">Idioma</string>
     <string name="espanol">Español</string>
     <string name="ingles">Inglés</string>
+
+    <!-- ERRORES -->
+
 </resources>

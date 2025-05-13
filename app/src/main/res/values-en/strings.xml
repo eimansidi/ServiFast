@@ -5,6 +5,9 @@
     <string name="usuario_ph">Phone number or email</string>
     <string name="contrasena">Password</string>
     <string name="contrasena_ph">******</string>
+    <string name="nueva_contraseña">New password</string>
+    <string name="repite_nueva_contraseña">Repeat your new password</string>
+    <string name="guardar">Save</string>
     <string name="nombre">First name</string>
     <string name="apellidos">Last name</string>
     <string name="email">Email</string>
@@ -45,6 +48,7 @@
     <string name="cerrar_sesion">Log out</string>
     <string name="valoraciones">Ratings</string>
     <string name="datos_personales">Personal information</string>
+    <string name="cambiar_contraseña">Change password</string>
     <string name="idioma">Language</string>
     <string name="espanol">Spanish</string>
     <string name="ingles">English</string>
