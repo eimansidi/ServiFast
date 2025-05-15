@@ -3,6 +3,7 @@ package com.eiman.servifast.api
 import com.eiman.servifast.api.models.*
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface ApiService {
@@ -32,4 +33,10 @@ interface ApiService {
 
     @POST("get_user_ratings.php")
     fun getUserRatings(@Body request: UserRatingListRequest): Call<UserRatingsResponse>
+
+    @POST("create_service.php")
+    fun createService(@Body req: CreateServiceRequest): Call<GenericResponse>
+
+    @GET("get_categories.php")
+    fun getCategories(): Call<List<CategoryResponse>>
 }

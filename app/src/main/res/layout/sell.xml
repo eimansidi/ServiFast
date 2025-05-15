@@ -28,11 +28,12 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginTop="12dp"
-            android:layout_gravity="center"
             android:layout_marginBottom="25dp"
             android:alpha="0.7"
-            android:background="@color/colorSecondaryVariant"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
             android:src="@drawable/img_placeholder"/>
+
 
         <View
             android:layout_width="match_parent"
@@ -110,13 +111,14 @@
                         android:maxLines="1"/>
                 </LinearLayout>
 
-                <Spinner
-                    android:id="@+id/spinnerCategory"
+                <Button
+                    android:id="@+id/btnCategory"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="25dp"
                     android:background="@drawable/bg_input_sell"
-                    android:padding="20dp"/>
+                    android:padding="20dp"
+                    android:hint="@string/categorias"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
