@@ -1,14 +1,19 @@
 package com.eiman.servifast.activities
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.widget.*
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.eiman.servifast.R
 import com.eiman.servifast.api.RetrofitClient
 import com.eiman.servifast.api.models.ChangePasswordRequest
 import com.eiman.servifast.api.models.GenericResponse
+import com.eiman.servifast.utils.LocaleHelper
 import com.eiman.servifast.utils.ValidationUtils.isValidPassword
 import retrofit2.Call
 import retrofit2.Callback
@@ -23,6 +28,12 @@ class ChangePasswordActivity : AppCompatActivity() {
 
     private lateinit var userIdentifier: String
     private var currentPassword: String? = null
+
+    override fun attachBaseContext(newBase: Context) {
+        val sharedPrefs = newBase.getSharedPreferences("user_session", Context.MODE_PRIVATE)
+        val lang = sharedPrefs.getString("language", "es") ?: "es"
+        super.attachBaseContext(LocaleHelper.setLocale(newBase, lang))
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,27 +80,28 @@ class ChangePasswordActivity : AppCompatActivity() {
 
             val request = ChangePasswordRequest(user = userIdentifier, new_password = newPassword)
 
-            RetrofitClient.instance.changePassword(request).enqueue(object : Callback<GenericResponse> {
-                override fun onResponse(call: Call<GenericResponse>, response: Response<GenericResponse>) {
-                    if (response.isSuccessful && response.body()?.success == true) {
-                        AlertDialog.Builder(this@ChangePasswordActivity)
-                            .setTitle("Éxito")
-                            .setMessage("Tu contraseña ha sido actualizada correctamente.")
-                            .setPositiveButton("OK") { _, _ ->
-                                startActivity(Intent(this@ChangePasswordActivity, SettingsActivity::class.java))
-                                finish()
-                            }
-                            .setCancelable(false)
-                            .show()
-                    } else {
-                        Toast.makeText(this@ChangePasswordActivity, "Error al actualizar contraseña", Toast.LENGTH_SHORT).show()
+            RetrofitClient.instance.changePassword(request)
+                .enqueue(object : Callback<GenericResponse> {
+                    override fun onResponse(call: Call<GenericResponse>, response: Response<GenericResponse>) {
+                        if (response.isSuccessful && response.body()?.success == true) {
+                            AlertDialog.Builder(this@ChangePasswordActivity)
+                                .setTitle("Éxito")
+                                .setMessage("Tu contraseña ha sido actualizada correctamente.")
+                                .setPositiveButton("OK") { _, _ ->
+                                    startActivity(Intent(this@ChangePasswordActivity, SettingsActivity::class.java))
+                                    finish()
+                                }
+                                .setCancelable(false)
+                                .show()
+                        } else {
+                            Toast.makeText(this@ChangePasswordActivity, "Error al actualizar contraseña", Toast.LENGTH_SHORT).show()
+                        }
                     }
-                }
 
-                override fun onFailure(call: Call<GenericResponse>, t: Throwable) {
-                    Toast.makeText(this@ChangePasswordActivity, "Error de red: ${t.message}", Toast.LENGTH_LONG).show()
-                }
-            })
+                    override fun onFailure(call: Call<GenericResponse>, t: Throwable) {
+                        Toast.makeText(this@ChangePasswordActivity, "Error de red: ${t.message}", Toast.LENGTH_LONG).show()
+                    }
+                })
         }
     }
 }

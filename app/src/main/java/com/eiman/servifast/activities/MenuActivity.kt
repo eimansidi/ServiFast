@@ -1,5 +1,6 @@
 package com.eiman.servifast.activities
 
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.BitmapFactory
@@ -16,6 +17,7 @@ import com.eiman.servifast.R
 import com.eiman.servifast.api.RetrofitClient
 import com.eiman.servifast.api.models.UserRatingRequest
 import com.eiman.servifast.api.models.UserRatingResponse
+import com.eiman.servifast.utils.LocaleHelper
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -29,16 +31,22 @@ class MenuActivity : AppCompatActivity() {
     private lateinit var btnLogout: Button
     private lateinit var btnBack: ImageButton
 
+    override fun attachBaseContext(newBase: Context) {
+        val shared = newBase.getSharedPreferences("user_session", Context.MODE_PRIVATE)
+        val lang   = shared.getString("language", "es") ?: "es"
+        super.attachBaseContext(LocaleHelper.setLocale(newBase, lang))
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.menu)
 
         prefs = getSharedPreferences("user_session", MODE_PRIVATE)
 
-        avatarImage = findViewById(R.id.userAvatar)
-        usernameText = findViewById(R.id.tvUsername)
-        btnLogout = findViewById(R.id.btnLogOut)
-        btnBack = findViewById(R.id.btnBack)
+        avatarImage   = findViewById(R.id.userAvatar)
+        usernameText  = findViewById(R.id.tvUsername)
+        btnLogout     = findViewById(R.id.btnLogOut)
+        btnBack       = findViewById(R.id.btnBack)
 
         btnBack.setOnClickListener { finish() }
         btnLogout.setOnClickListener { showLogoutConfirmation() }
@@ -98,33 +106,48 @@ class MenuActivity : AppCompatActivity() {
 
     private fun loadUserRating() {
         val userId = prefs.getString("user_identifier", null) ?: return
-        RetrofitClient.instance.getUserRating(UserRatingRequest(userId))
+        RetrofitClient.instance
+            .getUserRating(UserRatingRequest(userId))
             .enqueue(object : Callback<UserRatingResponse> {
-                override fun onResponse(call: Call<UserRatingResponse>, response: Response<UserRatingResponse>) {
+                override fun onResponse(
+                    call: Call<UserRatingResponse>,
+                    response: Response<UserRatingResponse>
+                ) {
                     if (response.isSuccessful && response.body()?.success == true) {
                         renderStars(response.body()!!.rating)
                     } else {
-                        Toast.makeText(this@MenuActivity, "No se pudo cargar rating", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this@MenuActivity,
+                            "No se pudo cargar rating",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
                 override fun onFailure(call: Call<UserRatingResponse>, t: Throwable) {
-                    Toast.makeText(this@MenuActivity, "Error al cargar rating: ${t.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@MenuActivity,
+                        "Error al cargar rating: ${t.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             })
     }
 
     private fun renderStars(rating: Float) {
-        val stars = listOf(
-            findViewById<ImageView>(R.id.star1),
-            findViewById<ImageView>(R.id.star2),
-            findViewById<ImageView>(R.id.star3),
-            findViewById<ImageView>(R.id.star4),
-            findViewById<ImageView>(R.id.star5)
+        val stars = listOf<ImageView>(
+            findViewById(R.id.star1),
+            findViewById(R.id.star2),
+            findViewById(R.id.star3),
+            findViewById(R.id.star4),
+            findViewById(R.id.star5)
         )
         val filled = rating.roundToInt()
         for ((index, star) in stars.withIndex()) {
             val colorRes = if (index < filled) R.color.star_active else R.color.star_inactive
-            star.setColorFilter(ContextCompat.getColor(this, colorRes), android.graphics.PorterDuff.Mode.SRC_IN)
+            star.setColorFilter(
+                ContextCompat.getColor(this, colorRes),
+                android.graphics.PorterDuff.Mode.SRC_IN
+            )
         }
     }
 }
