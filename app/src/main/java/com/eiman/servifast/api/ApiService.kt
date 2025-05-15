@@ -26,4 +26,10 @@ interface ApiService {
 
     @POST("get_user_rating.php")
     fun getUserRating(@Body request: UserRatingRequest): Call<UserRatingResponse>
+
+    @POST("get_user.php")
+    fun getUserProfile(@Body request: UserProfileRequest): Call<UserProfileResponse>
+
+    @POST("get_user_ratings.php")
+    fun getUserRatings(@Body request: UserRatingListRequest): Call<UserRatingsResponse>
 }
