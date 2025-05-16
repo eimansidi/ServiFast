@@ -1,5 +1,6 @@
 package com.eiman.servifast.api
 
+import com.eiman.servifast.api.items.*
 import com.eiman.servifast.api.models.*
 import retrofit2.Call
 import retrofit2.http.Body
@@ -39,4 +40,28 @@ interface ApiService {
 
     @GET("get_categories.php")
     fun getCategories(): Call<List<CategoryResponse>>
+
+    @POST("get_services.php")
+    fun getServices(): Call<List<ServicePostItem>>
+
+    @POST("get_latest_services.php")
+    fun getLatestServices(): Call<List<ServicePostItem>>
+
+    @GET("get_small_services.php")
+    fun getSmallServices(): Call<List<SmallPostItem>>
+
+    @POST("add_favorite.php")
+    fun addFavorite(@Body req: FavoriteRequest): Call<GenericResponse>
+
+    @POST("remove_favorite.php")
+    fun removeFavorite(@Body req: FavoriteRequest): Call<GenericResponse>
+
+    @POST("get_top_users.php")
+    fun getTopUsers(): Call<List<TopUserItem>>
+
+    @POST("filter_services.php")
+    fun filterServices(@Body criteria: FilterRequest): Call<List<ServicePostItem>>
+
+    @POST("search_services.php")
+    fun searchServices(@Body query: SearchRequest): Call<List<ServicePostItem>>
 }

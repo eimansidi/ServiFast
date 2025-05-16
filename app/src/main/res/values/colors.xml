@@ -19,4 +19,5 @@
 
     <color name="star_active">#FFD700</color>
     <color name="star_inactive">#E0E0E0</color>
+    <color name="colorLike">#EE0000</color>
 </resources>

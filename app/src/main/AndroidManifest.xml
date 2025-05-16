@@ -35,6 +35,7 @@
         <activity android:name=".activities.BuyActivity"/>
         <activity android:name=".activities.BoughtActivity"/>
         <activity android:name=".activities.FavoritesActivity"/>
+        <activity android:name=".activities.SearchActivity"/>
     </application>
 
 </manifest>

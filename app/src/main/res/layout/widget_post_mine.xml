@@ -4,18 +4,29 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@drawable/bg_post"
-    android:layout_margin="12dp"
     android:padding="16dp">
 
-    <ImageView
-        android:id="@+id/imgPost"
+    <FrameLayout
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginTop="8dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/img_placeholder"
-        android:background="@color/colorSecondaryVariant"
-        android:alpha="0.7"/>
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp">
+
+        <ImageView
+            android:id="@+id/imgPost"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/img_placeholder"
+            android:scaleType="centerCrop"/>
+
+        <ImageView
+            android:id="@+id/imgNegotiableStamp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/negotiable"
+            android:layout_gravity="top|start"
+            android:rotation="-30"/>
+    </FrameLayout>
 
     <TextView
         android:id="@+id/tvTitle"
@@ -47,6 +58,7 @@
             android:id="@+id/btnMore"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:src="@drawable/ic_more"/>
+            android:src="@drawable/ic_more"
+            android:background="@null"/>
     </LinearLayout>
 </LinearLayout>

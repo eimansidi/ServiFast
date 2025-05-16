@@ -4,7 +4,6 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@drawable/bg_post"
-    android:layout_margin="12dp"
     android:padding="16dp">
 
     <TextView
@@ -12,19 +11,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/particular"
-        android:textSize="12sp"
+        android:textSize="14sp"
         android:textColor="@color/colorParticular"
         android:textStyle="bold"/>
 
-    <ImageView
-        android:id="@+id/imgPost"
+    <FrameLayout
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginTop="8dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/img_placeholder"
-        android:background="@color/colorSecondaryVariant"
-        android:alpha="0.7"/>
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp">
+
+        <ImageView
+            android:id="@+id/imgPost"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/img_placeholder"
+            android:scaleType="centerCrop"/>
+
+        <ImageView
+            android:id="@+id/imgNegotiableStamp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/negotiable"
+            android:layout_gravity="top|start"
+            android:rotation="-30"/>
+    </FrameLayout>
 
     <TextView
         android:id="@+id/tvTitle"
@@ -49,13 +60,13 @@
             android:layout_weight="1"
             android:text="45 €"
             android:textSize="25sp"
-            android:textStyle="bold"
-            android:textColor="@color/colorSecondary"/>
+            android:textStyle="bold"/>
 
         <ImageButton
             android:id="@+id/btnLike"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:src="@drawable/ic_like"/>
+            android:src="@drawable/ic_like"
+            android:background="@null"/>
     </LinearLayout>
 </LinearLayout>

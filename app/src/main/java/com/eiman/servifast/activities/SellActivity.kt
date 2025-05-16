@@ -6,8 +6,6 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.*
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -17,6 +15,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.eiman.servifast.R
+import com.eiman.servifast.adapters.CategoryAdapter
 import com.eiman.servifast.api.RetrofitClient
 import com.eiman.servifast.api.models.CategoryResponse
 import com.eiman.servifast.api.models.CreateServiceRequest
@@ -69,8 +68,14 @@ class SellActivity : AppCompatActivity() {
         checkboxNeg     = findViewById(R.id.checkboxNegotiable)
         btnContinue     = findViewById(R.id.btnContinue)
 
-        imgPlaceholder.alpha = 0.7f
-        imgPlaceholder.setBackgroundResource(0)
+        imgPlaceholder.apply {
+            alpha = 0.7f
+            setBackgroundResource(0)
+            setOnClickListener {
+                if (hasImage) showImageOptions()
+                else pickImageLauncher.launch("image/*")
+            }
+        }
 
         btnClose.setOnClickListener {
             AlertDialog.Builder(this)
@@ -82,18 +87,16 @@ class SellActivity : AppCompatActivity() {
         }
 
         pickImageLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
-            if (uri == null) return@registerForActivityResult
-            contentResolver.openInputStream(uri)?.use { stream ->
-                val bmp = BitmapFactory.decodeStream(stream)
-                imgPlaceholder.setImageBitmap(bmp)
-                imgPlaceholder.alpha = 1.0f
-                hasImage = true
-                val baos = ByteArrayOutputStream().apply { bmp.compress(Bitmap.CompressFormat.JPEG, 80, this) }
-                imageBase64 = android.util.Base64.encodeToString(baos.toByteArray(), android.util.Base64.NO_WRAP)
+            uri?.let {
+                contentResolver.openInputStream(it)?.use { stream ->
+                    val bmp = BitmapFactory.decodeStream(stream)
+                    imgPlaceholder.setImageBitmap(bmp)
+                    imgPlaceholder.alpha = 1.0f
+                    hasImage = true
+                    val baos = ByteArrayOutputStream().apply { bmp.compress(Bitmap.CompressFormat.JPEG, 80, this) }
+                    imageBase64 = android.util.Base64.encodeToString(baos.toByteArray(), android.util.Base64.NO_WRAP)
+                }
             }
-        }
-        imgPlaceholder.setOnClickListener {
-            if (hasImage) showImageOptions() else pickImageLauncher.launch("image/*")
         }
 
         btnCategory.setOnClickListener { showCategorySheet() }
@@ -111,7 +114,7 @@ class SellActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
             val userId = prefs.getString("user_identifier", "") ?: ""
-            val catId = categoryList[selectedCategoryIndex].id
+            val catId  = categoryList[selectedCategoryIndex].id
             val req = CreateServiceRequest(
                 user        = userId,
                 titulo      = title,
@@ -161,13 +164,12 @@ class SellActivity : AppCompatActivity() {
 
     private fun showCategorySheet() {
         val sheet = BottomSheetDialog(this)
-        val view = layoutInflater.inflate(R.layout.widget_categories, null)
-        val rv = view.findViewById<RecyclerView>(R.id.rvCategories)
+        val view  = LayoutInflater.from(this).inflate(R.layout.widget_categories, null)
+        val rv    = view.findViewById<RecyclerView>(R.id.rvCategories)
         rv.layoutManager = LinearLayoutManager(this)
         rv.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         rv.adapter = CategoryAdapter(categoryList) { index ->
             selectedCategoryIndex = index
-            // get resource id by name
             val key = categoryList[index].nombre.lowercase()
             val resId = resources.getIdentifier(key, "string", packageName)
             btnCategory.text = if (resId != 0) getString(resId) else "Para ${categoryList[index].nombre}"
@@ -180,40 +182,16 @@ class SellActivity : AppCompatActivity() {
     private fun loadCategories() {
         RetrofitClient.instance.getCategories()
             .enqueue(object : Callback<List<CategoryResponse>> {
-                override fun onResponse(call: Call<List<CategoryResponse>>, response: Response<List<CategoryResponse>>) {
-                    val list = response.body().orEmpty()
+                override fun onResponse(
+                    call: Call<List<CategoryResponse>>,
+                    response: Response<List<CategoryResponse>>
+                ) {
                     categoryList.clear()
-                    categoryList.addAll(list)
+                    categoryList.addAll(response.body().orEmpty())
                 }
                 override fun onFailure(call: Call<List<CategoryResponse>>, t: Throwable) {
                     Toast.makeText(this@SellActivity, "Error al cargar categorías.", Toast.LENGTH_SHORT).show()
                 }
             })
-    }
-
-    inner class CategoryAdapter(
-        private val items: List<CategoryResponse>,
-        private val onClick: (Int) -> Unit
-    ) : RecyclerView.Adapter<CategoryAdapter.VH>() {
-        inner class VH(view: View) : RecyclerView.ViewHolder(view) {
-            val txt: TextView = view.findViewById(R.id.tvCategory)
-            init {
-                view.setOnClickListener { onClick(adapterPosition) }
-            }
-        }
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
-            val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_category, parent, false)
-            return VH(view)
-        }
-
-        override fun onBindViewHolder(holder: VH, position: Int) {
-            val key = items[position].nombre.lowercase()
-            val resId = resources.getIdentifier(key, "string", packageName)
-            holder.txt.text = if (resId != 0) getString(resId) else "Para ${items[position].nombre}"
-        }
-
-        override fun getItemCount() = items.size
     }
 }

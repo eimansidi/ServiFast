@@ -25,6 +25,8 @@
     <string name="categorias">Categories</string>
     <string name="novedades">New</string>
     <string name="mejor_valorados">Top rated</string>
+    <string name="todos_servicios">All services</string>
+    <string name="busqueda">Search: </string>
     <string name="hogar">Home services</string>
     <string name="personas">Personal care</string>
     <string name="automoviles">Automotive</string>
@@ -34,10 +36,12 @@
     <string name="precio_min">Min. price</string>
     <string name="precio_max">Max. price</string>
     <string name="ubicacion">Location</string>
+    <string name="filtro">Filter</string>
     <string name="titulo">Title</string>
     <string name="descripcion">Description</string>
     <string name="precio">Price</string>
     <string name="precio_negociable">Negotiable price</string>
+    <string name="negociable">Negotiable</string>
     <string name="continuar">Continue</string>
     <string name="comprar">Purchase</string>
     <string name="perfil">Profile</string>

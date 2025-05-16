@@ -16,7 +16,7 @@ class SplashActivity : AppCompatActivity() {
         val user = prefs.getString("user_identifier", null)
 
         val intent = if (user != null) {
-            Intent(this, SellActivity::class.java)
+            Intent(this, HomeActivity::class.java)
         } else {
             Intent(this, LoginActivity::class.java)
         }

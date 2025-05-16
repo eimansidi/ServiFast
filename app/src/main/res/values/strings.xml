@@ -25,6 +25,8 @@
     <string name="categorias">Categorías</string>
     <string name="novedades">Novedades</string>
     <string name="mejor_valorados">Mejor valorados</string>
+    <string name="todos_servicios">Todos los servicios</string>
+    <string name="busqueda">Búsqueda: </string>
     <string name="hogar">Para hogar</string>
     <string name="personas">Para personas</string>
     <string name="automoviles">Para automóviles</string>
@@ -34,10 +36,12 @@
     <string name="precio_min">Precio min.</string>
     <string name="precio_max">Precio max.</string>
     <string name="ubicacion">Ubicación</string>
+    <string name="filtro">Filtro</string>
     <string name="titulo">Título</string>
     <string name="descripcion">Descripción</string>
     <string name="precio">Precio</string>
     <string name="precio_negociable">Precio negociable</string>
+    <string name="negociable">Negociable</string>
     <string name="continuar">Continuar</string>
     <string name="comprar">Comprar</string>
     <string name="perfil">Perfil</string>
