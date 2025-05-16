@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@drawable/bg_post"
+    android:layout_margin="10dp"
     android:padding="16dp">
 
     <TextView
@@ -16,8 +17,8 @@
         android:textStyle="bold"/>
 
     <FrameLayout
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
         android:layout_gravity="center"
         android:layout_marginTop="8dp">
 

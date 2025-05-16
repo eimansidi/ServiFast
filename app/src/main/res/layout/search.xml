@@ -43,13 +43,43 @@
             android:background="@null"/>
     </LinearLayout>
 
+    <HorizontalScrollView
+        android:id="@+id/filtersScroll"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:paddingBottom="16dp"
+        android:paddingHorizontal="16dp"
+        app:layout_constraintTop_toBottomOf="@id/topBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:id="@+id/filtersContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"/>
+    </HorizontalScrollView>
+
+    <TextView
+        android:id="@+id/tvSearchHeader"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="23sp"
+        android:visibility="gone"
+        android:paddingHorizontal="30dp"
+        app:layout_constraintTop_toBottomOf="@id/filtersScroll"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Resultados de búsqueda -->
     <androidx.core.widget.NestedScrollView
         android:id="@+id/viewSearch"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/bg_home"
-        android:paddingVertical="20dp"
-        app:layout_constraintTop_toBottomOf="@id/topBar"
+        android:paddingBottom="20dp"
+        app:layout_constraintTop_toBottomOf="@id/tvSearchHeader"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -61,17 +91,6 @@
             android:paddingHorizontal="16dp"
             android:paddingBottom="70dp">
 
-            <!-- Novedades (horizontal) -->
-            <TextView
-                android:id="@+id/search"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/busqueda"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                android:layout_marginBottom="8dp"/>
-
-            <!-- Resultados de búsqueda en grid 2 columnas -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvSearchResults"
                 android:layout_width="match_parent"

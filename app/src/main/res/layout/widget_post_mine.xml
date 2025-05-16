@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@drawable/bg_post"
+    android:layout_margin="15dp"
     android:padding="16dp">
 
     <FrameLayout
