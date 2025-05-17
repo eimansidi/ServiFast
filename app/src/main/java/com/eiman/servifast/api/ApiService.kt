@@ -56,12 +56,15 @@ interface ApiService {
     @POST("remove_favorite.php")
     fun removeFavorite(@Body req: FavoriteRequest): Call<GenericResponse>
 
-    @POST("get_top_users.php")
-    fun getTopUsers(): Call<List<TopUserItem>>
+    @POST("get_users.php")
+    fun getUsers(): Call<List<UserItem>>
 
     @POST("filter_services.php")
     fun filterServices(@Body criteria: FilterRequest): Call<List<ServicePostItem>>
 
     @POST("search_services.php")
     fun searchServices(@Body query: SearchRequest): Call<List<ServicePostItem>>
+
+    @POST("get_users_ratings.php")
+    fun getUsersRatings(@Body request: UserRatingListRequest): Call<UserRatingsResponse>
 }

@@ -20,6 +20,7 @@ import com.eiman.servifast.R
 import com.eiman.servifast.adapters.RatingsAdapter
 import com.eiman.servifast.api.RetrofitClient
 import com.eiman.servifast.api.items.RatingItem
+import com.eiman.servifast.api.items.UserItem
 import com.eiman.servifast.api.models.GenericResponse
 import com.eiman.servifast.api.models.UpdateUserRequest
 import com.eiman.servifast.api.models.UserProfileRequest
@@ -136,32 +137,37 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun loadProfile() {
+        if (isOwnProfile) {
+            loadOwnProfile()
+        } else {
+            loadExternalProfile()
+        }
+    }
+
+    private fun loadOwnProfile() {
         val req = UserProfileRequest(user = userIdentifier)
         RetrofitClient.instance.getUserProfile(req)
             .enqueue(object : Callback<UserProfileResponse> {
-                override fun onResponse(
-                    call: Call<UserProfileResponse>,
-                    response: Response<UserProfileResponse>
-                ) {
-                    if (response.isSuccessful) {
-                        val body = response.body()
-                        if (body?.success == true) {
-                            hasAvatar = !body.avatar.isNullOrEmpty()
-                            if (hasAvatar) {
-                                val bytes = Base64.decode(body.avatar, Base64.NO_WRAP)
-                                avatarView.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.size))
-                            } else {
-                                avatarView.setImageResource(R.drawable.generic_avatar)
-                            }
-                            if (isOwnProfile) avatarView.setOnClickListener { showAvatarOptions() }
-                            nameView.text = "${body.nombre.capitalize()} ${body.apellidos.capitalize()}"
-                            renderStars(body.ratingPromedio)
-                            totalRatingsView.text = body.totalValoraciones.toString()
-                        } else {
-                            Toast.makeText(this@ProfileActivity, "Error servidor: ${body ?: "Desconocido"}", Toast.LENGTH_LONG).show()
-                        }
-                    } else {
+                override fun onResponse(call: Call<UserProfileResponse>, response: Response<UserProfileResponse>) {
+                    if (!response.isSuccessful) {
                         Toast.makeText(this@ProfileActivity, "Error HTTP: ${response.code()}", Toast.LENGTH_LONG).show()
+                        return
+                    }
+                    val body = response.body()
+                    if (body?.success == true) {
+                        hasAvatar = !body.avatar.isNullOrEmpty()
+                        if (hasAvatar) {
+                            val bytes = Base64.decode(body.avatar, Base64.NO_WRAP)
+                            avatarView.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.size))
+                        } else {
+                            avatarView.setImageResource(R.drawable.generic_avatar)
+                        }
+                        avatarView.setOnClickListener { showAvatarOptions() }
+                        nameView.text = "${body.nombre.capitalize()} ${body.apellidos.capitalize()}"
+                        renderStars(body.ratingPromedio)
+                        totalRatingsView.text = body.totalValoraciones.toString()
+                    } else {
+                        Toast.makeText(this@ProfileActivity, "Error servidor: ${body ?: "Desconocido"}", Toast.LENGTH_LONG).show()
                     }
                 }
 
@@ -171,33 +177,61 @@ class ProfileActivity : AppCompatActivity() {
             })
     }
 
-    private fun loadRatingsList() {
-        val req = UserRatingListRequest(user = userIdentifier)
-        RetrofitClient.instance.getUserRatings(req)
-            .enqueue(object : Callback<UserRatingsResponse> {
-                override fun onResponse(
-                    call: Call<UserRatingsResponse>,
-                    response: Response<UserRatingsResponse>
-                ) {
-                    if (response.isSuccessful) {
-                        val body = response.body()
-                        if (body?.success == true) {
-                            val list: List<RatingItem> = body.ratings
-                            val adapter = RatingsAdapter(list)
-                            rvRatings.adapter = adapter
-                            adapter.notifyDataSetChanged()
-                        } else {
-                            Toast.makeText(this@ProfileActivity, "Error servidor: Ratings no disponibles", Toast.LENGTH_LONG).show()
-                        }
-                    } else {
+    private fun loadExternalProfile() {
+        RetrofitClient.instance.getUsers()
+            .enqueue(object : Callback<List<UserItem>> {
+                override fun onResponse(call: Call<List<UserItem>>, response: Response<List<UserItem>>) {
+                    if (!response.isSuccessful) {
                         Toast.makeText(this@ProfileActivity, "Error HTTP: ${response.code()}", Toast.LENGTH_LONG).show()
+                        return
+                    }
+                    val list = response.body().orEmpty()
+                    val targetId = userIdentifier.toIntOrNull()
+                    val user = list.find { it.id == targetId }
+                    if (user != null) {
+                        hasAvatar = !user.avatarBase64.isNullOrEmpty()
+                        if (hasAvatar) {
+                            val bytes = Base64.decode(user.avatarBase64, Base64.DEFAULT)
+                            avatarView.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.size))
+                        } else {
+                            avatarView.setImageResource(R.drawable.generic_avatar)
+                        }
+                        nameView.text = user.nombre.capitalize()
+                        renderStars(user.rating)
+                        totalRatingsView.text = user.totalValoraciones.toString()
+                    } else {
+                        Toast.makeText(this@ProfileActivity, "Usuario no encontrado", Toast.LENGTH_LONG).show()
                     }
                 }
 
-                override fun onFailure(call: Call<UserRatingsResponse>, t: Throwable) {
+                override fun onFailure(call: Call<List<UserItem>>, t: Throwable) {
                     Toast.makeText(this@ProfileActivity, "Error red: ${t.message}", Toast.LENGTH_LONG).show()
                 }
             })
+    }
+
+    private fun loadRatingsList() {
+        val req = UserRatingListRequest(user = userIdentifier)
+        val call = if (isOwnProfile) {
+            RetrofitClient.instance.getUserRatings(req)
+        } else {
+            RetrofitClient.instance.getUsersRatings(req)
+        }
+
+        call.enqueue(object : Callback<UserRatingsResponse> {
+            override fun onResponse(call: Call<UserRatingsResponse>, response: Response<UserRatingsResponse>) {
+                if (response.isSuccessful && response.body()?.success == true) {
+                    val list: List<RatingItem> = response.body()!!.ratings
+                    rvRatings.adapter = RatingsAdapter(list)
+                    rvRatings.adapter?.notifyDataSetChanged()
+                } else {
+                    Toast.makeText(this@ProfileActivity, "Ratings no disponibles", Toast.LENGTH_LONG).show()
+                }
+            }
+            override fun onFailure(call: Call<UserRatingsResponse>, t: Throwable) {
+                Toast.makeText(this@ProfileActivity, "Error red: ${t.message}", Toast.LENGTH_LONG).show()
+            }
+        })
     }
 
     private fun renderStars(rating: Float) {

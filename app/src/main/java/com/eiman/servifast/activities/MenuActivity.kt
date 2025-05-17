@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.Base64
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -15,6 +16,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.eiman.servifast.R
 import com.eiman.servifast.api.RetrofitClient
+import com.eiman.servifast.api.models.UserProfileRequest
+import com.eiman.servifast.api.models.UserProfileResponse
 import com.eiman.servifast.api.models.UserRatingRequest
 import com.eiman.servifast.api.models.UserRatingResponse
 import com.eiman.servifast.utils.LocaleHelper
@@ -63,14 +66,37 @@ class MenuActivity : AppCompatActivity() {
     }
 
     private fun loadUserInfo() {
-        val avatarBase64 = prefs.getString("user_avatar", null)
-        if (avatarBase64 != null) {
-            val bytes = android.util.Base64.decode(avatarBase64, android.util.Base64.DEFAULT)
-            avatarImage.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.size))
-        } else {
-            avatarImage.setImageResource(R.drawable.generic_avatar)
-        }
-        usernameText.text = prefs.getString("user_name", "Usuario")
+        val userId = prefs.getString("user_identifier", null) ?: return
+        RetrofitClient.instance.getUserProfile(UserProfileRequest(userId))
+            .enqueue(object : Callback<UserProfileResponse> {
+                override fun onResponse(
+                    call: Call<UserProfileResponse>,
+                    response: Response<UserProfileResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        val body = response.body()
+                        if (body?.success == true) {
+                            // Avatar
+                            if (!body.avatar.isNullOrEmpty()) {
+                                val bytes = Base64.decode(body.avatar, Base64.NO_WRAP)
+                                avatarImage.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.size))
+                            } else {
+                                avatarImage.setImageResource(R.drawable.generic_avatar)
+                            }
+                            // Username
+                            usernameText.text = "${body.nombre.capitalize()} ${body.apellidos.capitalize()}"
+                        } else {
+                            Toast.makeText(this@MenuActivity, "Error servidor: ${body ?: "Desconocido"}", Toast.LENGTH_SHORT).show()
+                        }
+                    } else {
+                        Toast.makeText(this@MenuActivity, "Error HTTP: ${response.code()}", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<UserProfileResponse>, t: Throwable) {
+                    Toast.makeText(this@MenuActivity, "Error red: ${t.message}", Toast.LENGTH_SHORT).show()
+                }
+            })
     }
 
     private fun showLogoutConfirmation() {

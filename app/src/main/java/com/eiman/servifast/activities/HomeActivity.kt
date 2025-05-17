@@ -15,11 +15,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.eiman.servifast.R
 import com.eiman.servifast.adapters.PostAdapter
 import com.eiman.servifast.adapters.SmallPostAdapter
-import com.eiman.servifast.adapters.TopUsersAdapter
+import com.eiman.servifast.adapters.UsersAdapter
 import com.eiman.servifast.api.RetrofitClient
 import com.eiman.servifast.api.items.ServicePostItem
 import com.eiman.servifast.api.items.SmallPostItem
-import com.eiman.servifast.api.items.TopUserItem
+import com.eiman.servifast.api.items.UserItem
 import com.eiman.servifast.api.models.FilterRequest
 import com.eiman.servifast.ui.FilterDialog
 import retrofit2.Call
@@ -103,7 +103,15 @@ class HomeActivity : AppCompatActivity() {
         rvAllPosts.isNestedScrollingEnabled       = false
 
         loadNovedades()
-        loadTopUsers()
+        loadUsers()
+        loadAllPosts()
+    }
+
+    // Reload lists when returning to this Activity
+    override fun onResume() {
+        super.onResume()
+        loadNovedades()
+        loadUsers()
         loadAllPosts()
     }
 
@@ -123,22 +131,27 @@ class HomeActivity : AppCompatActivity() {
             })
     }
 
-    private fun loadTopUsers() {
-        RetrofitClient.instance.getTopUsers()
-            .enqueue(object : Callback<List<TopUserItem>> {
+    private fun loadUsers() {
+        RetrofitClient.instance.getUsers()
+            .enqueue(object : Callback<List<UserItem>> {
                 override fun onResponse(
-                    call: Call<List<TopUserItem>>,
-                    response: Response<List<TopUserItem>>
+                    call: Call<List<UserItem>>,
+                    response: Response<List<UserItem>>
                 ) {
-                    val items = response.body().orEmpty()
-                    rvMejorValorados.adapter = TopUsersAdapter(items) { user ->
+                    if (!response.isSuccessful) return
+
+                    val all = response.body().orEmpty()
+                    val top5 = all.take(5)
+
+                    rvMejorValorados.adapter = UsersAdapter(top5) { user ->
                         startActivity(Intent(this@HomeActivity, ProfileActivity::class.java).apply {
-                            putExtra("user_identifier", user.id)
+                            putExtra("user_identifier", user.id.toString())
                         })
                     }
                 }
-                override fun onFailure(call: Call<List<TopUserItem>>, t: Throwable) {
-                    Toast.makeText(this@HomeActivity, "Error al cargar mejor valorados", Toast.LENGTH_SHORT).show()
+
+                override fun onFailure(call: Call<List<UserItem>>, t: Throwable) {
+                    Toast.makeText(this@HomeActivity, "Error al cargar usuarios", Toast.LENGTH_SHORT).show()
                 }
             })
     }
